@@ -1,2 +1,2 @@
 # Sitake_project
-sistem integrasi takenaka
+sistem integrasi perusahaan
