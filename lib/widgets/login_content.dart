@@ -6,6 +6,7 @@ import 'animations/change_screen_animation.dart';
 import '../utils/constants.dart';
 import '../utils/helper_functions.dart';
 import 'bottom_text.dart';
+import 'input_field.dart';
 import 'top_text.dart';
 
 enum Screens {
@@ -25,37 +26,6 @@ class _LoginContentState extends State<LoginContent>
   late final List<Widget> createAccountContent;
   late final List<Widget> loginContent;
   bool isTextFieldFocus = false;
-
-  Widget inputField(
-      String hint, IconData iconData, bool obscure, TextInputType keyboard) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
-      child: SizedBox(
-        height: 50,
-        child: Material(
-          elevation: 8,
-          shadowColor: Colors.black87,
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(30),
-          child: TextField(
-            keyboardType: keyboard,
-            obscureText: obscure,
-            textAlignVertical: TextAlignVertical.bottom,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-                borderSide: BorderSide.none,
-              ),
-              filled: true,
-              fillColor: Colors.white,
-              hintText: hint,
-              prefixIcon: Icon(iconData),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget loginButton(String title) {
     return Padding(
@@ -103,20 +73,40 @@ class _LoginContentState extends State<LoginContent>
   @override
   void initState() {
     createAccountContent = [
-      inputField(
-          'Nama Pengguna', Ionicons.person_outline, false, TextInputType.name),
-      inputField('Nomor Induk Karyawan', Ionicons.card_outline, false,
-          TextInputType.number),
-      inputField(
-          'Password', Ionicons.lock_closed_outline, true, TextInputType.text),
+      InputField(
+        hint: 'Nama Pengguna',
+        keyboard: TextInputType.name,
+        iconData: Ionicons.person_outline,
+        obscure: false,
+      ),
+      InputField(
+        hint: 'Nomor Induk Karyawan',
+        keyboard: TextInputType.number,
+        iconData: Ionicons.card_outline,
+        obscure: false,
+      ),
+      InputField(
+        hint: 'Password',
+        keyboard: TextInputType.text,
+        iconData: Ionicons.lock_closed_outline,
+        obscure: true,
+      ),
       loginButton('Buat Akun'),
     ];
 
     loginContent = [
-      inputField('Nomor Induk Karyawan', Ionicons.card_outline, false,
-          TextInputType.number),
-      inputField(
-          'Password', Ionicons.lock_closed_outline, true, TextInputType.text),
+      InputField(
+        hint: 'Nomor Induk Karyawan',
+        keyboard: TextInputType.number,
+        iconData: Ionicons.card_outline,
+        obscure: false,
+      ),
+      InputField(
+        hint: 'Password',
+        keyboard: TextInputType.text,
+        iconData: Ionicons.lock_closed_outline,
+        obscure: true,
+      ),
       loginButton('Login'),
       forgotPassword(),
     ];

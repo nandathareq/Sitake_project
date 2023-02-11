@@ -35,6 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.white,
+            child: Icon(
+              Icons.logout,
+              color: Colors.black87,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
         bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,
             currentIndex: _selectedIndex,
