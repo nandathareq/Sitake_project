@@ -4,23 +4,41 @@ List<CourseModel> courses = [
   CourseModel(
       title: "sejarah takenaka",
       score: 3,
-      image: "/files/cache/f289c3dd623e729d991048dd00884624_f1118.jpg",
+      image: "https://picsum.photos/200/300",
       isCompleted: false),
   CourseModel(
       title: "filosofi dan visi perusahaan",
       score: 2,
-      image: "/files/cache/f289c3dd623e729d991048dd00884624_f1118.jpg",
+      image: "https://picsum.photos/200/300",
       isCompleted: false),
   CourseModel(
       title: "kode etik perusahaan",
       score: 3,
-      image:
-          "https://risqconsulting.com/wp-content/uploads/2019/04/Business-Etiquette.jpg",
+      image: "https://picsum.photos/200/300",
       isCompleted: false),
   CourseModel(
       title: "Struktur Organisasi",
       score: 5,
-      image:
-          "/sites/knowledge/files/styles/1280x500/public/images/2017/05/virtues_of_unintelligent_organisation_design.jpg?itok=H2vMc8aV",
+      image: "https://picsum.photos/200/300",
+      isCompleted: true),
+  CourseModel(
+      title: "sejarah takenaka",
+      score: 3,
+      image: "https://picsum.photos/200/300",
+      isCompleted: false),
+  CourseModel(
+      title: "filosofi dan visi perusahaan",
+      score: 2,
+      image: "https://picsum.photos/200/300",
+      isCompleted: false),
+  CourseModel(
+      title: "kode etik perusahaan",
+      score: 3,
+      image: "https://picsum.photos/200/300",
+      isCompleted: false),
+  CourseModel(
+      title: "Struktur Organisasi",
+      score: 5,
+      image: "https://picsum.photos/200/300",
       isCompleted: true),
 ];

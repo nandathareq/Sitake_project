@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sitake_mobile/models/course_model.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sitake_mobile/models/data.dart';
+import 'package:sitake_mobile/screens/course_screen.dart';
 import 'package:sitake_mobile/widgets/input_field.dart';
 
 import '../utils/constants.dart';
@@ -14,45 +15,64 @@ class LearningScreen extends StatefulWidget {
 }
 
 class _LearningScreenState extends State<LearningScreen> {
-  Widget _listViewItem(CourseModel course, int index) {
+  Widget _CourseMenu(CourseModel course) {
     Widget widget;
-    widget = Column(
-      children: [
-        Hero(
-            tag: index,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Image.network(course.image, width: 150, height: 150),
-            )),
-        const SizedBox(height: 10),
-        Text(course.title.addOverFlow, style: h4Style),
-        Row(
-          children: [
-            RatingBar.builder(
-              itemPadding: EdgeInsets.zero,
-              initialRating: course.score.toDouble(),
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              glow: false,
-              ignoreGestures: true,
-              itemBuilder: (_, __) => const Icon(
-                Icons.star,
-                size: 2.0,
-                color: lightOrange,
+    widget = Container(
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        shadowColor: Colors.black,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch, // add this
+          children: <Widget>[
+            Expanded(
+                child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
               ),
-              onRatingUpdate: (rating) {},
+              child: Image.network(
+                course.image,
+                fit: BoxFit.fill,
+              ),
+            )),
+            ListTile(
+              title: Text(
+                course.title,
+                style: h4Style,
+              ),
+              subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(course.score.toString()),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow[600],
+                        size: 20,
+                      )
+                    ],
+                  ),
+                  course.isCompleted
+                      ? Icon(
+                          Icons.check_circle,
+                          color: Colors.green[700],
+                          size: 20,
+                        )
+                      : Container()
+                ],
+              ),
             ),
-            const SizedBox(width: 10),
-            Text(course.score.toString(), style: h4Style),
           ],
-        )
-      ],
+        ),
+      ),
     );
 
     return GestureDetector(
-      onTap: () => {},
+      onTap: () => {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => CourseScreen()))
+      },
       child: widget,
     );
   }
@@ -80,7 +100,7 @@ class _LearningScreenState extends State<LearningScreen> {
                   ]),
             )),
         Container(
-          height: 70,
+          height: 50,
         ),
         InputField(
           keyboard: TextInputType.text,
@@ -89,17 +109,19 @@ class _LearningScreenState extends State<LearningScreen> {
           iconData: Icons.search,
         ),
         Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            reverse: true,
-            physics: const ClampingScrollPhysics(),
-            itemCount: courses.length,
-            itemBuilder: (_, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 15, top: 10),
-                child: _listViewItem(courses[index], index),
-              );
-            },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
+              shrinkWrap: true,
+              reverse: true,
+              physics: const ClampingScrollPhysics(),
+              itemCount: courses.length,
+              itemBuilder: (_, index) {
+                return _CourseMenu(courses[index]);
+              },
+            ),
           ),
         ),
       ],

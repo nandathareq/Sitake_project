@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sitake_mobile/screens/learning_screen.dart';
 
 import '../utils/app_color.dart';
@@ -14,15 +15,24 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    Material(
-      child: Container(child: Text("under construction")),
+    Scaffold(
+      body: Center(
+        child: Lottie.network(
+            "https://assets1.lottiefiles.com/packages/lf20_4s3kvfcn.json"),
+      ),
     ),
     LearningScreen(),
-    Material(
-      child: Container(child: Text("under construction")),
+    Scaffold(
+      body: Center(
+        child: Lottie.network(
+            "https://assets1.lottiefiles.com/packages/lf20_4s3kvfcn.json"),
+      ),
     ),
-    Material(
-      child: Container(child: Text("under construction")),
+    Scaffold(
+      body: Center(
+        child: Lottie.network(
+            "https://assets1.lottiefiles.com/packages/lf20_4s3kvfcn.json"),
+      ),
     )
   ];
 
