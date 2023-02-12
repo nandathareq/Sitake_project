@@ -24,7 +24,7 @@ const h1Style = TextStyle(
     fontWeight: FontWeight.w700);
 
 const h2Style = TextStyle(
-    fontSize: 22,
+    fontSize: 30,
     color: Colors.black,
     fontFamily: "Poppins",
     fontWeight: FontWeight.w600);

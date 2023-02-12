@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:sitake_mobile/models/course_model.dart';
 import 'package:sitake_mobile/models/data.dart';
 import 'package:sitake_mobile/screens/course_screen.dart';
@@ -71,7 +70,9 @@ class _LearningScreenState extends State<LearningScreen> {
     return GestureDetector(
       onTap: () => {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CourseScreen()))
+            context,
+            MaterialPageRoute(
+                builder: (context) => CourseScreen(title: course.title)))
       },
       child: widget,
     );
