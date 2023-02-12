@@ -107,9 +107,7 @@ class _CourseScreenState extends State<CourseScreen> {
                 reverse: true,
                 physics: const ClampingScrollPhysics(),
                 itemCount: contents.length,
-                itemBuilder: (_, index) {
-                  return _ContentItem(contents[index]);
-                },
+                itemBuilder: (_, index) => _ContentItem(contents[index]),
               ),
             ),
           ),
