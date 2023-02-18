@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:lottie/lottie.dart';
+import 'package:sitake_mobile/models/data.dart';
+import 'package:sitake_mobile/screens/result_screen.dart';
 import 'package:sitake_mobile/utils/constants.dart';
 
-import '../models/question_model.dart';
+import '../widgets/question_card.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({Key? key}) : super(key: key);
@@ -13,29 +14,13 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  Widget answers(
-      {required List<Answer> answers, required Function(dynamic) setAnswer}) {
-    return ListView.builder(
-        itemCount: answers.length,
-        itemBuilder: (context, index) => ListTile(
-              title: Text(""),
-              leading: Radio(
-                  value: answers[index],
-                  groupValue: answers[index],
-                  onChanged: setAnswer),
-            ));
-  }
-
-  Widget questionCard() {
-    return Card();
-  }
-
   Widget timer({required int timeMinute}) {
     return TweenAnimationBuilder<Duration>(
         duration: Duration(minutes: timeMinute),
         tween: Tween(begin: Duration(minutes: timeMinute), end: Duration.zero),
         onEnd: () {
-          print('Timer ended');
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => ResultScreen()));
         },
         builder: (BuildContext context, Duration value, Widget? child) {
           final minutes = value.inMinutes;
@@ -51,13 +36,15 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+          heroTag: "a",
           backgroundColor: Colors.white,
           child: Icon(
             Ionicons.checkmark_done,
             color: Colors.black87,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => ResultScreen()));
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       appBar: AppBar(
@@ -75,9 +62,18 @@ class _QuizScreenState extends State<QuizScreen> {
           ],
         ),
       ),
-      body: Center(
-        child: Lottie.network(
-            "https://assets1.lottiefiles.com/packages/lf20_4s3kvfcn.json"),
+      body: Container(
+        padding: EdgeInsets.all(15),
+        child: Expanded(
+            child: ListView.separated(
+                itemBuilder: (context, index) => QuestionCard(
+                    question: questions[index].question,
+                    answers: questions[index].answers),
+                separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(
+                      height: 10,
+                    ),
+                itemCount: questions.length)),
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/content_model.dart';
 import '../models/data.dart';
 import '../utils/constants.dart';
-import '../widgets/input_field.dart';
 import 'video_screen.dart';
 
 class CourseScreen extends StatefulWidget {
@@ -17,39 +16,42 @@ class CourseScreen extends StatefulWidget {
 class _CourseScreenState extends State<CourseScreen> {
   Widget _ContentItem(ContentModel content) {
     Widget widget;
-    widget = Container(
-      child: Card(
+    widget = Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         shadowColor: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            ListTile(
+        child: Padding(
+          padding: EdgeInsets.all(5),
+          child: Row(
+            children: [
+              Expanded(
+                  child: ListTile(
                 title: Text(
-              content.title,
-              style: h4Style,
-            )),
-            Row(
-              children: [
-                Text(content.score.toString()),
-                Icon(
-                  Icons.star,
-                  color: Colors.yellow[600],
-                  size: 20,
+                  content.title,
+                  style: h4Style,
                 ),
-                content.isCompleted
-                    ? Icon(
-                        Icons.check_circle,
-                        color: Colors.green[700],
-                        size: 20,
-                      )
-                    : Container()
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                subtitle: Row(children: [
+                  Text(content.score.toString()),
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellow[600],
+                    size: 20,
+                  )
+                ]),
+              )),
+              content.isCompleted
+                  ? Icon(
+                      Icons.check_circle,
+                      color: Colors.green[700],
+                      size: 40,
+                    )
+                  : Icon(
+                      Icons.navigate_next_rounded,
+                      color: Colors.black54,
+                      size: 40,
+                    )
+            ],
+          ),
+        ));
 
     return GestureDetector(
       onTap: () => {

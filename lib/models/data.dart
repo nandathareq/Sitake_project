@@ -1,5 +1,6 @@
 import 'package:sitake_mobile/models/content_model.dart';
 import 'package:sitake_mobile/models/course_model.dart';
+import 'package:sitake_mobile/models/question_model.dart';
 
 List<CourseModel> courses = [
   CourseModel(
@@ -93,4 +94,27 @@ List<ContentModel> contents = [
       isCompleted: false,
       videoUrl:
           'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4'),
+];
+
+List<Question> questions = [
+  Question(question: "dimana kantor takenaka?", answers: [
+    Answer(answer: "sudirman", isTrue: true),
+    Answer(answer: "bintaro", isTrue: false),
+    Answer(answer: "ciketing", isTrue: false)
+  ]),
+  Question(question: "dimana kantor takenaka?", answers: [
+    Answer(answer: "sudirman", isTrue: true),
+    Answer(answer: "bintaro", isTrue: false),
+    Answer(answer: "ciketing", isTrue: false)
+  ]),
+  Question(question: "dimana kantor takenaka?", answers: [
+    Answer(answer: "sudirman", isTrue: true),
+    Answer(answer: "bintaro", isTrue: false),
+    Answer(answer: "ciketing", isTrue: false)
+  ]),
+  Question(question: "dimana kantor takenaka?", answers: [
+    Answer(answer: "sudirman", isTrue: true),
+    Answer(answer: "bintaro", isTrue: false),
+    Answer(answer: "ciketing", isTrue: false)
+  ])
 ];
