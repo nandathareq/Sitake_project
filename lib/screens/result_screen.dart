@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sitake_mobile/screens/Quiz_screen.dart';
 
-import '../utils/constants.dart';
-
 class ResultScreen extends StatelessWidget {
   const ResultScreen({Key? key}) : super(key: key);
 
